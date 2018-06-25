@@ -230,6 +230,7 @@ While primarily being developed for the OsmoSDR hardware, this block as well sup
  * Fairwaves UmTRX through Fairwaves' fork of UHD
  * Red Pitaya SDR transceiver (http://bazaar.redpitaya.com)
  * FreeSRP through libfreesrp library
+ * ADSDR through libadsdr library
 
 By using the osmocom $sourk block you can take advantage of a common software api in your application(s) independent of the underlying radio hardware.
 
@@ -266,6 +267,7 @@ Lines ending with ... mean it's possible to bind devices together by specifying 
 #end if
   redpitaya=192.168.1.100[:1001]
   freesrp=0[,fx3='path/to/fx3.img',fpga='path/to/fpga.bin',loopback]
+  adsdr=0[,fx3='path/to/fx3.img',fpga='path/to/fpga.bin',loopback]
   hackrf=0[,buffers=32][,bias=0|1][,bias_tx=0|1]
   bladerf=0[,tamer=internal|external|external_1pps][,smb=25e6]
   uhd[,serial=...][,lo_offset=0][,mcr=52e6][,nchan=2][,subdev='\\\\'B:0 A:0\\\\''] ...
