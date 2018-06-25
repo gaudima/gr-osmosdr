@@ -250,6 +250,16 @@ if(ENABLE_FREESRP)
 GR_INCLUDE_SUBDIRECTORY(freesrp)
 endif(ENABLE_FREESRP)
 
+#-----------------------------------------------------------------------
+########################################################################
+# Setup ADSDR component
+########################################################################
+GR_REGISTER_COMPONENT("ADSDR support" ENABLE_ADSDR LIBADSDR_FOUND)
+if(ENABLE_ADSDR)
+GR_INCLUDE_SUBDIRECTORY(adsdr)
+endif(ENABLE_ADSDR)
+#-----------------------------------------------------------------------
+
 ########################################################################
 # Setup configuration file
 ########################################################################
