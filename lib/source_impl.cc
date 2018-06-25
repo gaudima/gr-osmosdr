@@ -92,6 +92,12 @@
 #include <freesrp_source_c.h>
 #endif
 
+//-----------------------------
+#ifdef ENABLE_ADSDR
+#include <adsdr_source_c.h>
+#endif
+//-----------------------------
+
 
 #include "arg_helpers.h"
 #include "source_impl.h"
@@ -171,6 +177,12 @@ source_impl::source_impl( const std::string &args )
 #ifdef ENABLE_FREESRP
   dev_types.push_back("freesrp");
 #endif
+//-------------------------------
+#ifdef ENABLE_ADSDR
+  dev_types.push_back("adsdr");
+#endif
+//-------------------------------
+
   std::cerr << "gr-osmosdr "
             << GR_OSMOSDR_VERSION << " (" << GR_OSMOSDR_LIBVER << ") "
             << "gnuradio " << gr::version() << std::endl;
@@ -252,6 +264,12 @@ source_impl::source_impl( const std::string &args )
     BOOST_FOREACH( std::string dev, freesrp_source_c::get_devices() )
       dev_list.push_back( dev );
 #endif
+//--------------------------------------------------------------------
+#ifdef ENABLE_ADSDR
+    BOOST_FOREACH( std::string dev, adsdr_source_c::get_devices() )
+      dev_list.push_back( dev );
+#endif
+//--------------------------------------------------------------------
 
 //    std::cerr << std::endl;
 //    BOOST_FOREACH( std::string dev, dev_list )
@@ -382,6 +400,15 @@ source_impl::source_impl( const std::string &args )
       block = src; iface = src.get();
     }
 #endif
+
+//---------------------------------------------------------------
+#ifdef ENABLE_ADSDR
+    if ( dict.count("adsdr") ) {
+      adsdr_source_c_sptr src = make_adsdr_source_c( arg );
+      block = src; iface = src.get();
+    }
+#endif
+//---------------------------------------------------------------
 
     if ( iface != NULL && long(block.get()) != 0 ) {
       _devs.push_back( iface );
