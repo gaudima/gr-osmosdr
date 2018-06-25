@@ -90,6 +90,12 @@
 #include <freesrp_source_c.h>
 #endif
 
+//---------------------------
+#ifdef ENABLE_ADSDR
+#include <adsdr_source_c.h>
+#endif
+//---------------------------
+
 #include "arg_helpers.h"
 
 using namespace osmosdr;
@@ -194,6 +200,14 @@ devices_t device::find(const device_t &hint)
   BOOST_FOREACH( std::string dev, soapy_source_c::get_devices() )
     devices.push_back( device_t(dev) );
 #endif
+
+//-----------------------------------------------------------
+#ifdef ENABLE_ADSDR
+  BOOST_FOREACH( std::string dev, adsdr_source_c::get_devices() )
+    devices.push_back( device_t(dev) );
+#endif
+//-----------------------------------------------------------
+
 
   /* software-only sources should be appended at the very end,
    * hopefully resulting in hardware sources to be shown first
