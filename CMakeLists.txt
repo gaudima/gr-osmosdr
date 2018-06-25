@@ -173,6 +173,9 @@ find_package(Volk)
 find_package(LibbladeRF)
 find_package(SoapySDR NO_MODULE)
 find_package(LibFreeSRP)
+#----------------------
+find_package(LibADSDR)
+#----------------------
 find_package(Doxygen)
 
 if(NOT GNURADIO_RUNTIME_FOUND)
