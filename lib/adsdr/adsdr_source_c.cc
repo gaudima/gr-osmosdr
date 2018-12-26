@@ -67,10 +67,10 @@ void adsdr_source_c::adsdr_rx_callback(const vector<sample> &samples)
     {
         if(!_buf_queue.try_enqueue(s))
         {
-	    if(!_ignore_overflow)
-	    {
-		throw runtime_error("RX buffer overflow");
-	    }
+	        if(!_ignore_overflow)
+	        {
+		        throw runtime_error("RX buffer overflow");
+	        }
         }
         else
         {
